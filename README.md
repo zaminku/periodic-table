@@ -1,5 +1,5 @@
 # periodic-table
-=======
+
 # Background
 The periodic table is a neat way to display data about every chemical element. Scientists organized the elements in this order to group together elements by their properties. Reading the table left to right, one can immediately gather that the data is organized according to increasing atomic number (the number of protons an element has).
 

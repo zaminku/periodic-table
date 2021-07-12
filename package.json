@@ -10,13 +10,17 @@
     "core-js": "^3.15.2",
     "css-loader": "^5.2.6",
     "mini-css-extract-plugin": "^2.1.0",
+    "node-sass": "^6.0.1",
+    "periodic-table": "0.0.8",
+    "periodic-table-js": "^1.0.0",
     "regenerator-runtime": "^0.13.7",
     "sass": "^1.35.2",
-    "sass-loader": "^12.1.0",
     "webpack": "^5.44.0",
     "webpack-cli": "^4.7.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "sass-loader": "^12.1.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch --mode=development",

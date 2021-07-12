@@ -1,0 +1,40 @@
+{
+  "name": "jsp",
+  "version": "1.0.0",
+  "description": "# Background The periodic table is a neat way to display data about every chemical element. Scientists organized the elements in this order to group together elements by their properties. Reading the table left to right, one can immediately gather that the data is organized according to increasing atomic number (the number of protons an element has).",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.7",
+    "babel-loader": "^8.2.2",
+    "core-js": "^3.15.2",
+    "css-loader": "^5.2.6",
+    "mini-css-extract-plugin": "^2.1.0",
+    "regenerator-runtime": "^0.13.7",
+    "sass": "^1.35.2",
+    "sass-loader": "^12.1.0",
+    "webpack": "^5.44.0",
+    "webpack-cli": "^4.7.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch --mode=development",
+    "start": "webpack --watch --mode=development",
+    "build": "webpack --mode=production"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zaminku/periodic-table.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zaminku/periodic-table/issues"
+  },
+  "homepage": "https://github.com/zaminku/periodic-table#readme",
+  "browserslist": [
+    "defaults"
+  ]
+}

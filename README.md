@@ -45,4 +45,6 @@ In addition, this project will include:
 - Based on grouping (metals/metalloids/nonmetals), filter which data to graph (bonus)
 
 # Backend
+- I will need to implement a lightweight backend to protect my API keys.
+
 

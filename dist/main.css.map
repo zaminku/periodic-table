@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack://jsp/./src/index.scss"],"names":[],"mappings":"AAEA,UACI,oBACA,UACA,qB","file":"main.css","sourcesContent":["\n\n#el1, #el2 {\n    font-family: 'Arial';\n    font: white;\n    background-color: red;\n}\n\n"],"sourceRoot":""}

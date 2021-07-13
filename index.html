@@ -410,14 +410,9 @@
                 let target = e.target;
                 let idx = parseInt(target.innerText) - 1;
                 let element = pt[idx];
-                console.log(element);
-                // console.log(text);
-                // alert(target);
                 let printedData = document.getElementById('data');
-                console.log(printedData);
-                printedData.setAttribute("style", "display:block");
                 printedData.innerHTML = `name: ${element.name} (${element.atomicNumber}) 
-                    <br> mass: ${element.atomicMass} <br> year discovered: ${element.yearDiscovered}\n
+                    <br> mass: ${parseFloat(element.atomicMass)} <br> year discovered: ${element.yearDiscovered}
                     <br> state: ${element.standardState} <br> electron configuration: ${element.electronicConfiguration}
                 `;
             })

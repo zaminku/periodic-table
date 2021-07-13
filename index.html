@@ -1,40 +1,23 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="stylesheet" href="./dist/main.css" />
-    <script src="./dist/main.js"></script>
-    <title>Periodic Table</title>
-</head>
-
-<body>
-    <h1 id="hello">hmmmm</h1>
-</body>
-
-</html> 
--->
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Periodic Table</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./dist/main.css" />
-    <script type="text/javascript" src="./src/data.js"></script>
+    <script src="./dist/main.js"></script>
+    <script type="text/javascript" src="./src/scripts/data.js"></script>
+    <!-- <script type="text/javascript" src="./src/scripts/graph.js" defer></script> -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <title>Interactive Periodic Table</title>
 </head>
 
 
 
 <body>
-
     
+    <!-- <h1 id="hello">hmmmm</h1> -->
     <h1 style="background-color:greenyellow;">
         <center>The Periodic Table
         </center>
@@ -140,7 +123,7 @@
                     </font>
                 </td>
                 <td bgcolor="#E6E6FA">
-                    <font color="green">36<br />Ar
+                    <font color="green">36<br />Kr
                 </td>
 
 
@@ -401,24 +384,28 @@
     </center>
 
     
-    <script>
-    
-        let tr = document.getElementsByTagName('td');
+    <div>
+        <script>
+            let tr = document.getElementsByTagName('td');
 
-        Array.from(tr).forEach(trEle => {
-            trEle.addEventListener("click", e => {
-                let target = e.target;
-                let idx = parseInt(target.innerText) - 1;
-                let element = pt[idx];
-                let printedData = document.getElementById('data');
-                printedData.innerHTML = `name: ${element.name} (${element.atomicNumber}) 
-                    <br> mass: ${parseFloat(element.atomicMass)} <br> year discovered: ${element.yearDiscovered}
-                    <br> state: ${element.standardState} <br> electron configuration: ${element.electronicConfiguration}
-                `;
+            Array.from(tr).forEach(trEle => {
+                trEle.addEventListener("click", e => {
+                    let target = e.target;
+                    let idx = parseInt(target.innerText) - 1;
+                    let element = pt[idx];
+                    let printedData = document.getElementById('data');
+                    printedData.innerHTML = `name: ${element.name} (${element.atomicNumber}) 
+                        <br> mass: ${parseFloat(element.atomicMass)} <br> year discovered: ${element.yearDiscovered}
+                        <br> state: ${element.standardState} <br> electron configuration: ${element.electronicConfiguration}
+                    `;
+                })
             })
-        })
-    
-    </script>
+        </script>
+    </div>
+
+    <div id="graph">
+
+    </div>
 
     <p id="data">select an element for some data!</p>
 </body>

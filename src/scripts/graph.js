@@ -1,57 +1,118 @@
-// set the dimensions and margins of the graph
-var margin = { top: 10, right: 30, bottom: 30, left: 60 },
-    width = 460 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
+// New dataset read from CSV
+var ratData = [];
 
-// append the svg object to the body of the page
-var svg = d3.select("#my_dataviz")
-    .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform",
-        "translate(" + margin.left + "," + margin.top + ")");
+d3.csv('rat-data.csv', function (d) {
+    return {
+        city: d.city, // city name
+        rats: +d.rats // force value of rats to be number (+)
+    };
+}, function (error, rows) { // catch error if error, read rows
+    ratData = rows; // set ratData equal to rows
+    console.log(ratData);
+    createVisualization(); // call function to create chart
+});
 
-//Read the data
-d3.csv("https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/connectedscatter.csv",
-    // When reading the csv, I must format variables:
-    function (d) {
-        return { date: d3.timeParse("%Y-%m-%d")(d.date), value: d.value }
-    },
-    // Now I can use this dataset:
-    function (data) {
-        // Add X axis --> it is a date format
-        var x = d3.scaleTime()
-            .domain(d3.extent(data, function (d) { return d.date; }))
-            .range([0, width]);
-        svg.append("g")
-            .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x));
-        // Add Y axis
-        var y = d3.scaleLinear()
-            .domain([8000, 9200])
-            .range([height, 0]);
-        svg.append("g")
-            .call(d3.axisLeft(y));
-        // Add the line
-        svg.append("path")
-            .datum(data)
-            .attr("fill", "none")
-            .attr("stroke", "#69b3a2")
-            .attr("stroke-width", 1.5)
-            .attr("d", d3.line()
-                .x(function (d) { return x(d.date) })
-                .y(function (d) { return y(d.value) })
-            )
-        // Add the points
-        svg
-            .append("g")
-            .selectAll("dot")
-            .data(data)
-            .enter()
-            .append("circle")
-            .attr("cx", function (d) { return x(d.date) })
-            .attr("cy", function (d) { return y(d.value) })
-            .attr("r", 5)
-            .attr("fill", "#69b3a2")
-    })
+// Write the createVisualization function
+// This will contain the script that creates the chart
+function createVisualization() {
+    // Width and height of SVG
+    var w = 150;
+    var h = 175;
+
+    // Get length of dataset
+    var arrayLength = ratData.length; // length of dataset
+    var maxValue = d3.max(ratData, function (d) { return +d.rats; }); // get maximum
+    var x_axisLength = 100; // length of x-axis in our layout
+    var y_axisLength = 100; // length of y-axis in our layout
+
+    // Use a scale for the height of the visualization
+    var yScale = d3.scaleLinear()
+        .domain([0, maxValue])
+        .range([0, y_axisLength]);
+
+    //Create SVG element
+    var svg = d3.select("body")
+        .append("svg")
+        .attr("width", w)
+        .attr("height", h);
+
+    // Select and generate rectangle elements
+    svg.selectAll("rect")
+        .data(ratData)
+        .enter()
+        .append("rect")
+        .attr("x", function (d, i) {
+            return i * (x_axisLength / arrayLength) + 30; // Set x coordinate of rectangle to index of data value (i) *25
+        })
+        .attr("y", function (d) {
+            return h - yScale(d.rats); // Set y coordinate of rect using the y scale
+        })
+        .attr("width", (x_axisLength / arrayLength) - 1)
+        .attr("height", function (d) {
+            return yScale(d.rats); // Set height of using the scale
+        })
+        .attr("fill", "steelblue");
+
+    // Create y-axis
+    svg.append("line")
+        .attr("x1", 30)
+        .attr("y1", 75)
+        .attr("x2", 30)
+        .attr("y2", 175)
+        .attr("stroke-width", 2)
+        .attr("stroke", "black");
+
+    // Create x-axis
+    svg.append("line")
+        .attr("x1", 30)
+        .attr("y1", 175)
+        .attr("x2", 130)
+        .attr("y2", 175)
+        .attr("stroke-width", 2)
+        .attr("stroke", "black");
+
+    // y-axis label
+    svg.append("text")
+        .attr("class", "y label")
+        .attr("text-anchor", "end")
+        .text("No. of Rats")
+        .attr("transform", "translate(20, 20) rotate(-90)")
+        .attr("font-size", "14")
+        .attr("font-family", "'Open Sans', sans-serif");
+
+    var tooltip = d3.select("body")
+        .append("div")
+        .style("position", "absolute")
+        .style("font-family", "'Open Sans', sans-serif")
+        .style("font-size", "12px")
+        .style("z-index", "10")
+        .style("visibility", "hidden");
+
+    // Select and generate rectangle elements
+    svg.selectAll("rect")
+        .data(ratData)
+        .enter()
+        .append("rect")
+        .attr("x", function (d, i) {
+            return i * (x_axisLength / arrayLength) + 30; // Set x coord
+        })
+        .attr("y", function (d) {
+            return h - d.rats * (y_axisLength / maxValue); // Set y coord
+        })
+        .attr("width", (x_axisLength / arrayLength) - 1)
+        .attr("height", function (d) {
+            return d.rats * (y_axisLength / maxValue); // Set height to data value
+        })
+        .attr("fill", "steelblue")
+        .on("mouseover", function (d) {
+            return tooltip.style("visibility", "visible").text(d.city + ": " + d.rats);
+        })
+        .on("mousemove", function (d) {
+            return tooltip.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px").text(d.city + ": " + d.rats);
+        })
+        .on("mouseout", function (d) {
+            return tooltip.style("visibility", "hidden");
+        });
+}; // end of function
+
+

@@ -84,7 +84,7 @@ function createVisualization() {
         .append("div")
         .style("position", "absolute")
         .style("font-family", "'Open Sans', sans-serif")
-        .style("font-size", "12px")
+        .style("font-size", "12px")  
         .style("z-index", "10")
         .style("visibility", "hidden");
 

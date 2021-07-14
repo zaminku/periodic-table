@@ -1,118 +1,126 @@
-// New dataset read from CSV
-var ratData = [];
+var chemData = [];
 
-d3.csv('rat-data.csv', function (d) {
+d3.csv("data.csv", function (d) {
     return {
-        city: d.city, // city name
-        rats: +d.rats // force value of rats to be number (+)
+        atomicNumber: +d.atomicNumber,
+        symbol: d.symbol,
+        name: d.name,
+        atomicMass: +d.atomicMass,
+        cpkHexColor: d.cpkHexColor,
+        electronicConfiguration: d.electronicConfiguration,
+        electronegativity: +d.electronegativity,
+        atomicRadius: +d.atomicRadius,
+        ionRadius: +d.ionRadius,
+        vanDelWaalsRadius: +d.vanDelWaalsRadius,
+        ionizationEnergy: +d.ionizationEnergy,
+        electronAffinity: +d.electronAffinity,
+        oxidationStates: d.oxidationStates,
+        standardState: d.standardState,
+        bondingType: d.bondingType,
+        meltingPoint: +d.meltingPoint,
+        boilingPoint: +d.boilingPoint,
+        denisty: +d.density,
+        groupBlock: d.groupBlock,
+        yearDiscovered: +d.yearDiscovered
+
     };
-}, function (error, rows) { // catch error if error, read rows
-    ratData = rows; // set ratData equal to rows
-    console.log(ratData);
-    createVisualization(); // call function to create chart
+}, function (error, rows) {
+    chemData = rows;
+    console.log(chemData);
+    createVisualization();
 });
 
-// Write the createVisualization function
-// This will contain the script that creates the chart
+var tooltip = d3.select("body")
+    .append("div")
+    .style("position", "absolute")
+    .style("font-family", "sans-serif")
+    .style("font-size", "10px")
+    .style("z-index", "10")
+    .style("visibility", "hidden");
+
 function createVisualization() {
-    // Width and height of SVG
-    var w = 150;
-    var h = 175;
+    
+    // Width and height
+    var w = 800;
+    var h = 360;
+    var padding = 30;
 
-    // Get length of dataset
-    var arrayLength = ratData.length; // length of dataset
-    var maxValue = d3.max(ratData, function (d) { return +d.rats; }); // get maximum
-    var x_axisLength = 100; // length of x-axis in our layout
-    var y_axisLength = 100; // length of y-axis in our layout
+    var xScale = d3.scaleLinear()
+        .domain([0, d3.max(chemData, function (d) {
+            return d.atomicNumber;
+        })])
+        .range([padding, w - padding]);
 
-    // Use a scale for the height of the visualization
     var yScale = d3.scaleLinear()
-        .domain([0, maxValue])
-        .range([0, y_axisLength]);
+        .domain([0, d3.max(chemData, function (d) {
+            return d.electronegativity;
+        })])
+        .range([h - padding, padding]);
+
+    var xAxis = d3.axisBottom()
+        .scale(xScale)
+        .ticks(5);
+
+    var yAxis = d3.axisLeft()
+        .scale(yScale)
+        .ticks(5);
 
     //Create SVG element
     var svg = d3.select("body")
         .append("svg")
         .attr("width", w)
-        .attr("height", h);
+        .attr("height", h)
+        .attr("style", "outline: thick solid black;");
 
-    // Select and generate rectangle elements
-    svg.selectAll("rect")
-        .data(ratData)
+    svg.selectAll("dot")
+        .data(chemData)
         .enter()
-        .append("rect")
-        .attr("x", function (d, i) {
-            return i * (x_axisLength / arrayLength) + 30; // Set x coordinate of rectangle to index of data value (i) *25
+        .append("circle")
+        .attr("cx", function (d) {
+            return xScale(d.atomicNumber);
         })
-        .attr("y", function (d) {
-            return h - yScale(d.rats); // Set y coordinate of rect using the y scale
+        .attr("cy", function (d) {
+            return yScale(d.electronegativity);
         })
-        .attr("width", (x_axisLength / arrayLength) - 1)
-        .attr("height", function (d) {
-            return yScale(d.rats); // Set height of using the scale
-        })
-        .attr("fill", "steelblue");
-
-    // Create y-axis
-    svg.append("line")
-        .attr("x1", 30)
-        .attr("y1", 75)
-        .attr("x2", 30)
-        .attr("y2", 175)
-        .attr("stroke-width", 2)
-        .attr("stroke", "black");
-
-    // Create x-axis
-    svg.append("line")
-        .attr("x1", 30)
-        .attr("y1", 175)
-        .attr("x2", 130)
-        .attr("y2", 175)
-        .attr("stroke-width", 2)
-        .attr("stroke", "black");
-
-    // y-axis label
-    svg.append("text")
-        .attr("class", "y label")
-        .attr("text-anchor", "end")
-        .text("No. of Rats")
-        .attr("transform", "translate(20, 20) rotate(-90)")
-        .attr("font-size", "14")
-        .attr("font-family", "'Open Sans', sans-serif");
-
-    var tooltip = d3.select("body")
-        .append("div")
-        .style("position", "absolute")
-        .style("font-family", "'Open Sans', sans-serif")
-        .style("font-size", "12px")  
-        .style("z-index", "10")
-        .style("visibility", "hidden");
-
-    // Select and generate rectangle elements
-    svg.selectAll("rect")
-        .data(ratData)
-        .enter()
-        .append("rect")
-        .attr("x", function (d, i) {
-            return i * (x_axisLength / arrayLength) + 30; // Set x coord
-        })
-        .attr("y", function (d) {
-            return h - d.rats * (y_axisLength / maxValue); // Set y coord
-        })
-        .attr("width", (x_axisLength / arrayLength) - 1)
-        .attr("height", function (d) {
-            return d.rats * (y_axisLength / maxValue); // Set height to data value
-        })
-        .attr("fill", "steelblue")
+        .attr("r", 5)
         .on("mouseover", function (d) {
-            return tooltip.style("visibility", "visible").text(d.city + ": " + d.rats);
+            return tooltip.style("visibility", "visible").text(d.name + "(" + d.atomicNumber + ")" + d.electronegativity);
         })
         .on("mousemove", function (d) {
-            return tooltip.style("top", (d3.event.pageY - 10) + "px").style("left", (d3.event.pageX + 10) + "px").text(d.city + ": " + d.rats);
+            return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px").text(d.name + "(" + d.atomicNumber + "): " + d.electronegativity);
         })
         .on("mouseout", function (d) {
             return tooltip.style("visibility", "hidden");
         });
-}; // end of function
+    
+    // svg.append("path")
+    //     .attr("fill", "none")
+    //     .attr("stroke", "#69b3a2")
+    //     .attr("stroke-width", 1.5)
+    //     .attr("d", d3.line()
+    //         .x(function (d) { return x(d.date) })
+    //         .y(function (d) { return y(d.value) })
+    //     )
+    // // Add the points
+    // svg
+    //     .append("g")
+    //     .selectAll("dot")
+    //     .data(data)
+    //     .enter()
+    //     .append("circle")
+    //     .attr("cx", function (d) { return x(d.date) })
+    //     .attr("cy", function (d) { return y(d.value) })
+    //     .attr("r", 5)
+    //     .attr("fill", "#69b3a2")
+    
+    svg.append("g")
+        .attr("class", "axis")
+        .attr("transform", "translate(0," + (h - padding) + ")")
+        .call(xAxis);
 
+    svg.append("g")
+        .attr("class", "axis")
+        .attr("transform", "translate(" + padding + ", 0)")
+        .call(yAxis);
 
+}

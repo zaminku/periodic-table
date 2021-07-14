@@ -1,3 +1,19 @@
-#el1,#el2{font-family:"Arial";font:#fff;background-color:red}
+/*!*************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
+  \*************************************************************************************************************************************/
+#el1, #el2 {
+  font-family: "Arial";
+  font: white;
+  background-color: red;
+}
 
-/*# sourceMappingURL=main.css.map*/
+.axis {
+  font: 10px sans-serif;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}

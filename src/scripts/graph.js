@@ -93,25 +93,17 @@ function createVisualization() {
             return tooltip.style("visibility", "hidden");
         });
     
-    // svg.append("path")
-    //     .attr("fill", "none")
-    //     .attr("stroke", "#69b3a2")
-    //     .attr("stroke-width", 1.5)
-    //     .attr("d", d3.line()
-    //         .x(function (d) { return x(d.date) })
-    //         .y(function (d) { return y(d.value) })
-    //     )
-    // // Add the points
-    // svg
-    //     .append("g")
-    //     .selectAll("dot")
-    //     .data(data)
-    //     .enter()
-    //     .append("circle")
-    //     .attr("cx", function (d) { return x(d.date) })
-    //     .attr("cy", function (d) { return y(d.value) })
-    //     .attr("r", 5)
-    //     .attr("fill", "#69b3a2")
+    svg.append("path")
+        .datum(chemData)
+        .attr("fill", "none")
+        .attr("stroke", "black")
+        .attr("stroke-width", 1.5)
+        .attr("d", d3.line()
+            .x(function (d) { return xScale(d.atomicNumber) })
+            .y(function (d) { return yScale(d.electronegativity) })
+        )
+
+    
     
     svg.append("g")
         .attr("class", "axis")

@@ -3,7 +3,7 @@
 #el1, #el2 {
     font-family: 'Arial';
     font: white;
-    background-color: red;
+    background-color: #DAF7A6;
 }
 
 .axis {
@@ -15,4 +15,9 @@
 	fill: none;
 	stroke: #000;
 	shape-rendering: crispEdges;
+}
+
+td {
+    // border-radius: 25%;git 
+    text-align: center;
 }

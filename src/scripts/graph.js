@@ -22,7 +22,6 @@ d3.csv("data.csv", function (d) {
         denisty: +d.density,
         groupBlock: d.groupBlock,
         yearDiscovered: +d.yearDiscovered
-
     };
 }, function (error, rows) {
     chemData = rows;
@@ -41,9 +40,9 @@ var tooltip = d3.select("body")
 function createVisualization() {
     
     // Width and height
-    var w = 800;
+    var w = 1000;
     var h = 360;
-    var padding = 30;
+    var padding = 60;
 
     var xScale = d3.scaleLinear()
         .domain([0, d3.max(chemData, function (d) {
@@ -72,6 +71,7 @@ function createVisualization() {
         .attr("height", h)
         .attr("style", "outline: thick solid black;");
 
+    //scatter plot with .on
     svg.selectAll("dot")
         .data(chemData)
         .enter()
@@ -83,16 +83,21 @@ function createVisualization() {
             return yScale(d.electronegativity);
         })
         .attr("r", 5)
+        .style("fill", "#59B5BF")
         .on("mouseover", function (d) {
-            return tooltip.style("visibility", "visible").text(d.name + "(" + d.atomicNumber + ")" + d.electronegativity);
+            d3.select(this).attr("r", 10).style("fill", "#FF5733");
+            return tooltip.style("visibility", "visible").text(d.name + "(" + d.atomicNumber + ")" + d.electronegativity).style('color', 'red').style('font-weight', 'bold');
         })
         .on("mousemove", function (d) {
-            return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px").text(d.name + "(" + d.atomicNumber + "): " + d.electronegativity);
+            d3.select(this).attr("r", 10).style("fill", "#FF5733");
+            return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px").text(d.name + "(" + d.atomicNumber + "): " + d.electronegativity).style('color', '#898A85').style('font-weight', 'bold').style('font-size', '14px').style('background-color', '#F6F6EF');
         })
         .on("mouseout", function (d) {
+            d3.select(this).attr("r", 5).style("fill", "#59B5BF");
             return tooltip.style("visibility", "hidden");
         });
     
+    //line graph
     svg.append("path")
         .datum(chemData)
         .attr("fill", "none")
@@ -103,16 +108,30 @@ function createVisualization() {
             .y(function (d) { return yScale(d.electronegativity) })
         )
 
-    
-    
     svg.append("g")
-        .attr("class", "axis")
+        .attr("class", "x axis")
         .attr("transform", "translate(0," + (h - padding) + ")")
         .call(xAxis);
 
     svg.append("g")
-        .attr("class", "axis")
+        .attr("class", "y axis")
         .attr("transform", "translate(" + padding + ", 0)")
         .call(yAxis);
+
+    svg.append("text")
+        .attr("class", "x label")
+        .attr("text-anchor", "end")
+        .text("Atomic Number")
+        .attr("transform", `translate(${w/1.8}, 340)`)
+        .attr("font-size", "18")
+        .attr("font-family", "'Open Sans', sans-serif");
+
+    svg.append("text")
+        .attr("class", "y label")
+        .attr("text-anchor", "end")
+        .text("Electronegativity")
+        .attr("transform", `translate(20, ${h/3}) rotate(-90)`)
+        .attr("font-size", "18")
+        .attr("font-family", "'Open Sans', sans-serif");
 
 }

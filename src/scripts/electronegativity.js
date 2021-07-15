@@ -40,7 +40,7 @@ var tooltip = d3.select("body")
 function createVisualization() {
     
     // Width and height
-    var w = 1000;
+    var w = 1500;
     var h = 360;
     var padding = 60;
 
@@ -69,7 +69,7 @@ function createVisualization() {
         .append("svg")
         .attr("width", w)
         .attr("height", h)
-        .attr("style", "outline: thick solid black;");
+        // .attr("style", "outline: thin solid black;");
 
     //scatter plot with .on
     svg.selectAll("dot")
@@ -83,17 +83,17 @@ function createVisualization() {
             return yScale(d.electronegativity);
         })
         .attr("r", 5)
-        .style("fill", "#59B5BF")
+        .style("fill", "#A9CCE3")
         .on("mouseover", function (d) {
-            d3.select(this).attr("r", 10).style("fill", "#FF5733");
-            return tooltip.style("visibility", "visible").text(d.name + "(" + d.atomicNumber + ")" + d.electronegativity).style('color', 'red').style('font-weight', 'bold');
+            d3.select(this).attr("r", 10).style("fill", "#EC7D7D");
+            return tooltip.style("visibility", "visible").text(d.name + "(" + d.atomicNumber + ")" + d.electronegativity).style('color', 'red').style('font-weight', 'bold').style('font-family', 'Oxygen');
         })
         .on("mousemove", function (d) {
-            d3.select(this).attr("r", 10).style("fill", "#FF5733");
-            return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px").text(d.name + "(" + d.atomicNumber + "): " + d.electronegativity).style('color', '#898A85').style('font-weight', 'bold').style('font-size', '14px').style('background-color', '#F6F6EF');
+            d3.select(this).attr("r", 10).style("fill", "#EC7D7D");
+            return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px").text(d.name + "(" + d.atomicNumber + "): " + d.electronegativity).style('color', '#898A85').style('font-weight', 'bold').style('font-size', '14px').style('background-color', 'white').style('font-family', 'Oxygen');
         })
         .on("mouseout", function (d) {
-            d3.select(this).attr("r", 5).style("fill", "#59B5BF");
+            d3.select(this).attr("r", 5).style("fill", "#A9CCE3");
             return tooltip.style("visibility", "hidden");
         });
     
@@ -101,8 +101,8 @@ function createVisualization() {
     svg.append("path")
         .datum(chemData)
         .attr("fill", "none")
-        .attr("stroke", "black")
-        .attr("stroke-width", 1.5)
+        .attr("stroke", "#C9BABA")
+        .attr("stroke-width", 1)
         .attr("d", d3.line()
             .x(function (d) { return xScale(d.atomicNumber) })
             .y(function (d) { return yScale(d.electronegativity) })
@@ -116,7 +116,8 @@ function createVisualization() {
     svg.append("g")
         .attr("class", "y axis")
         .attr("transform", "translate(" + padding + ", 0)")
-        .call(yAxis);
+        .call(yAxis)
+        .attr("font-family", "'Oxygen', sans-serif");
 
     svg.append("text")
         .attr("class", "x label")
@@ -124,7 +125,8 @@ function createVisualization() {
         .text("Atomic Number")
         .attr("transform", `translate(${w/1.8}, 340)`)
         .attr("font-size", "18")
-        .attr("font-family", "'Open Sans', sans-serif");
+        .attr("font-family", "'Oxygen', sans-serif")
+        .style("fill", "#6E7675");;
 
     svg.append("text")
         .attr("class", "y label")
@@ -132,6 +134,7 @@ function createVisualization() {
         .text("Electronegativity")
         .attr("transform", `translate(20, ${h/3}) rotate(-90)`)
         .attr("font-size", "18")
-        .attr("font-family", "'Open Sans', sans-serif");
+        .attr("font-family", "'Oxygen', sans-serif")
+        .style("fill", "#6E7675");
 
 }

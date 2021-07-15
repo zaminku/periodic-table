@@ -4,7 +4,11 @@
 h1 {
   font-family: "Orbitron", sans-serif;
   font-weight: bold;
-  color: white;
+  color: black;
+}
+
+body {
+  font-family: "Oxygen";
 }
 
 #el1, #el2 {
@@ -13,16 +17,21 @@ h1 {
 }
 
 .axis {
-  font: 10px sans-serif;
+  font: 10px Oxygen;
+  color: #A9CCE3;
 }
 
 .axis path,
 .axis line {
   fill: none;
-  stroke: #000;
+  stroke: #72b4af;
   shape-rendering: crispEdges;
 }
 
 td {
   text-align: center;
+}
+
+button {
+  font-family: Oxygen;
 }

@@ -7,9 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./dist/main.css" />
     <script src="./dist/main.js"></script>
-    <script type="text/javascript" src="./src/scripts/data.js"></script>
-    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script type="text/javascript" src="./src/scripts/data.js" defer></script>
     <script type="text/javascript" src="./src/scripts/graph.js" defer></script>
+    <script src="https://d3js.org/d3.v4.min.js" defer></script>
+    <!-- <script type="text/javascript" src="./src/scripts/electronegativity.js" defer></script> -->
     <title>Interactive Periodic Table</title>
 </head>
 
@@ -22,7 +23,8 @@
         <center>The Periodic Table
         </center>
     </h1>
-    <div>
+
+    <div id="periodic-table">
         <center>
             <table width="800">
                 <tr>
@@ -385,30 +387,19 @@
         </center>
     </div>  
     
+    <!-- Script to get properties of a specific element. from properties.js-->
     <div>
-        <script src="./src/scripts/properties.js">
-            // let tr = document.getElementsByTagName('td');
-
-            // Array.from(tr).forEach(trEle => {
-            //     trEle.addEventListener("click", e => {
-            //         let target = e.target;
-            //         let idx = parseInt(target.innerText) - 1;
-            //         let element = pt[idx];
-            //         let printedData = document.getElementById('data');
-            //         printedData.innerHTML = `name: ${element.name} (${element.atomicNumber}) 
-            //             <br> mass: ${parseFloat(element.atomicMass)} <br> year discovered: ${element.yearDiscovered}
-            //             <br> state: ${element.standardState} <br> electron configuration: ${element.electronicConfiguration}
-            //         `;
-            //     })
-            // })
-        </script>
-    </div>
-
-    <div id="graph">
-
+        <script src="./src/scripts/properties.js"></script>
     </div>
 
     <p id="data">select an element for some data!</p>
+
+    <!-- Render graphs buttons -->
+    <div id="buttons">
+        <button id="enButton">ELECTRONEGATIVITY</button>
+    </div>
+
+    <div id="graph"></div>
 </body>
 
 

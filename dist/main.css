@@ -10,9 +10,44 @@ body {
   font-family: "Oxygen";
 }
 
-#el1, #el2 {
-  font: white;
-  background-color: #DAF7A6;
+.nonmetal {
+  background-color: yellow;
+}
+
+.noble-gas {
+  background-color: orange;
+}
+
+.alkali-metal {
+  background-color: red;
+}
+
+.alkaline-earth-metal {
+  background-color: purple;
+}
+
+.metalloid {
+  background-color: green;
+}
+
+.halogen {
+  background-color: lightyellow;
+}
+
+.post-transition-metal {
+  background-color: lightgreen;
+}
+
+.transition-metal {
+  background-color: lightblue;
+}
+
+.lanthanide {
+  background-color: cyan;
+}
+
+.actinide {
+  background-color: turquoise;
 }
 
 .axis path,

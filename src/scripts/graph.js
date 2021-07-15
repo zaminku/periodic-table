@@ -1,3 +1,4 @@
+// Electronegativity Button Listener
 let enButton = document.getElementById('enButton');
 let en = false;
 enButton.addEventListener("click", e => {
@@ -16,6 +17,8 @@ enButton.addEventListener("click", e => {
         graphDiv.appendChild(newScript2);
     }
 })
+
+// Atomic Radius Button Listener
 let arButton = document.getElementById('arButton');
 let ar = false;
 arButton.addEventListener("click", e => {
@@ -35,6 +38,7 @@ arButton.addEventListener("click", e => {
     }
 })
 
+// Ionization Energy Button Listener
 let ieButton = document.getElementById('ieButton');
 let ie = false;
 ieButton.addEventListener("click", e => {
@@ -54,6 +58,7 @@ ieButton.addEventListener("click", e => {
     }
 })
 
+// Electron Affinity Button Listener
 let eaButton = document.getElementById('eaButton');
 let ea = false;
 eaButton.addEventListener("click", e => {
@@ -73,6 +78,7 @@ eaButton.addEventListener("click", e => {
     }
 })
 
+// Atomic Mass Button Listener
 // let amButton = document.getElementById('amButton');
 // let am = false;
 // amButton.addEventListener("click", e => {
@@ -92,6 +98,7 @@ eaButton.addEventListener("click", e => {
 //     }
 // })
 
+//Clear Graph Button
 let clearButton = document.getElementById('clearButton');
 clearButton.addEventListener("click", e=> {
     let graphDiv = document.getElementById("graph");

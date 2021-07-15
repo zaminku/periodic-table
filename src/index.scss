@@ -11,10 +11,50 @@ body {
     font-family: 'Oxygen';
 }
 
-#el1, #el2 {
+// Nonmetal
+.nonmetal {
     // font-family: 'Arial';
-    font: white;
-    background-color: #DAF7A6;
+    background-color: yellow;
+}
+
+// Noble Gas
+.noble-gas {
+    background-color: orange;
+}
+
+// Alkali Metal
+.alkali-metal {
+    background-color: red;
+}
+
+// Alkaline Earth Metal
+.alkaline-earth-metal {
+    background-color: purple;
+}
+
+//Metalloid
+.metalloid {
+    background-color: green;
+}
+
+.halogen {
+    background-color: lightyellow;
+}
+
+.post-transition-metal {
+    background-color: lightgreen;
+}
+
+.transition-metal {
+    background-color: lightblue;
+}
+
+.lanthanide {
+    background-color: cyan;
+}
+
+.actinide {
+    background-color: turquoise;
 }
 
 

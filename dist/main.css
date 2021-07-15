@@ -3,7 +3,6 @@
   \*************************************************************************************************************************************/
 h1 {
   font-family: "Orbitron", sans-serif;
-  font-weight: bold;
   color: black;
 }
 
@@ -16,16 +15,16 @@ body {
   background-color: #DAF7A6;
 }
 
-.axis {
-  font: 10px Oxygen;
-  color: #A9CCE3;
-}
-
 .axis path,
 .axis line {
   fill: none;
-  stroke: #72b4af;
+  stroke: #C0DDB6;
   shape-rendering: crispEdges;
+}
+
+.axis {
+  color: #A9CCE3;
+  font: 10px Oxygen;
 }
 
 td {

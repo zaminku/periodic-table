@@ -89,3 +89,11 @@ td {
 button {
   font-family: Oxygen;
 }
+
+fa fa-github {
+  font-size: 10px;
+}
+
+.table-data {
+  display: block;
+}

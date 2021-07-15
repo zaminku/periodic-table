@@ -40,7 +40,7 @@ var tooltip = d3.select("body")
 function createVisualization() {
 
     // Width and height
-    var w = 1250;
+    var w = 1000;
     var h = 360;
     var padding = 60;
 

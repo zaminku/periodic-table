@@ -38,7 +38,7 @@ var tooltip = d3.select("body")
     .style("visibility", "hidden");
 
 function createVisualization() {
-    
+
     // Width and height
     var w = 1000;
     var h = 360;
@@ -52,7 +52,7 @@ function createVisualization() {
 
     var yScale = d3.scaleLinear()
         .domain([0, d3.max(chemData, function (d) {
-            return d.electronegativity;
+            return d.atomicMass;
         })])
         .range([h - padding, padding]);
 
@@ -69,7 +69,7 @@ function createVisualization() {
         .append("svg")
         .attr("width", w)
         .attr("height", h)
-        // .attr("style", "outline: thin solid black;");
+    // .attr("style", "outline: thin solid black;");
 
     //scatter plot with .on
     svg.selectAll("dot")
@@ -80,23 +80,23 @@ function createVisualization() {
             return xScale(d.atomicNumber);
         })
         .attr("cy", function (d) {
-            return yScale(d.electronegativity);
+            return yScale(d.atomicMass);
         })
         .attr("r", 5)
         .style("fill", "#A9CCE3")
         .on("mouseover", function (d) {
             d3.select(this).attr("r", 10).style("fill", "#EC7D7D");
-            return tooltip.style("visibility", "visible").text(d.name + "(" + d.atomicNumber + ")" + d.electronegativity).style('color', 'red').style('font-weight', 'bold').style('font-family', 'Oxygen');
+            return tooltip.style("visibility", "visible").text(d.name + "(" + d.atomicNumber + ")" + d.atomicMass).style('color', 'red').style('font-weight', 'bold').style('font-family', 'Oxygen');
         })
         .on("mousemove", function (d) {
             d3.select(this).attr("r", 10).style("fill", "#EC7D7D");
-            return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px").text(d.name + "(" + d.atomicNumber + "): " + d.electronegativity).style('color', '#898A85').style('font-weight', 'bold').style('font-size', '14px').style('background-color', 'white').style('font-family', 'Oxygen');
+            return tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px").text(d.name + "(" + d.atomicNumber + "): " + d.atomicMass).style('color', '#898A85').style('font-weight', 'bold').style('font-size', '14px').style('background-color', 'white').style('font-family', 'Oxygen');
         })
         .on("mouseout", function (d) {
             d3.select(this).attr("r", 5).style("fill", "#A9CCE3");
             return tooltip.style("visibility", "hidden");
         });
-    
+
     //line graph
     svg.append("path")
         .datum(chemData)
@@ -105,7 +105,7 @@ function createVisualization() {
         .attr("stroke-width", 1)
         .attr("d", d3.line()
             .x(function (d) { return xScale(d.atomicNumber) })
-            .y(function (d) { return yScale(d.electronegativity) })
+            .y(function (d) { return yScale(d.atomicMass) })
         )
 
     svg.append("g")
@@ -117,13 +117,13 @@ function createVisualization() {
         .attr("class", "y axis")
         .attr("transform", "translate(" + padding + ", 0)")
         .call(yAxis)
-        // .attr("font-family", "'Oxygen', sans-serif");
+    // .attr("font-family", "'Oxygen', sans-serif");
 
     svg.append("text")
         .attr("class", "x label")
         .attr("text-anchor", "end")
         .text("Atomic Number")
-        .attr("transform", `translate(${w/1.8}, 340)`)
+        .attr("transform", `translate(${w / 1.8}, 340)`)
         .attr("font-size", "18")
         .attr("font-family", "'Oxygen', sans-serif")
         .style("fill", "#6E7675");;
@@ -131,8 +131,8 @@ function createVisualization() {
     svg.append("text")
         .attr("class", "y label")
         .attr("text-anchor", "end")
-        .text("Electronegativity")
-        .attr("transform", `translate(20, ${h/3}) rotate(-90)`)
+        .text("Atomic Mass")
+        .attr("transform", `translate(20, ${h / 3}) rotate(-90)`)
         .attr("font-size", "18")
         .attr("font-family", "'Oxygen', sans-serif")
         .style("fill", "#6E7675");

@@ -11,14 +11,8 @@ h1 {
   color: #7A777A;
 }
 
-.data > * {
-  font-family: "Times New Roman", Times, serif;
-  color: red;
-  border-style: solid;
-}
-
 .data {
-  border-style: solid;
+  text-align: center;
 }
 
 .data-name {
@@ -96,4 +90,12 @@ fa fa-github {
 
 .table-data {
   display: block;
+}
+
+h3 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
 }

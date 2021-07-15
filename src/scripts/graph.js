@@ -6,6 +6,8 @@ enButton.addEventListener("click", e => {
         en = true;
         let graphDiv = document.getElementById("graph");
         graphDiv.innerHTML = "";
+        let graphTag = document.getElementById("graph-tag");
+        graphTag.innerHTML = "";
         // console.log(graphDiv);
         // let newScript = document.createElement("script");
         // newScript.type = 'text/javascript';
@@ -26,6 +28,8 @@ arButton.addEventListener("click", e => {
         ar = true;
         let graphDiv = document.getElementById("graph");
         graphDiv.innerHTML = "";
+        let graphTag = document.getElementById("graph-tag");
+        graphTag.innerHTML = "";
         // console.log(graphDiv);
         // let newScript = document.createElement("script");
         // newScript.type = 'text/javascript';
@@ -46,6 +50,8 @@ ieButton.addEventListener("click", e => {
         ie = true;
         let graphDiv = document.getElementById("graph");
         graphDiv.innerHTML = "";
+        let graphTag = document.getElementById("graph-tag");
+        graphTag.innerHTML = "";
         // console.log(graphDiv);
         // let newScript = document.createElement("script");
         // newScript.type = 'text/javascript';
@@ -66,6 +72,8 @@ eaButton.addEventListener("click", e => {
         ea = true;
         let graphDiv = document.getElementById("graph");
         graphDiv.innerHTML = "";
+        let graphTag = document.getElementById("graph-tag");
+        graphTag.innerHTML = "";
         // console.log(graphDiv);
         // let newScript = document.createElement("script");
         // newScript.type = 'text/javascript';
@@ -86,6 +94,8 @@ eaButton.addEventListener("click", e => {
 //         am = true;
 //         let graphDiv = document.getElementById("graph");
 //         graphDiv.innerHTML = "";
+            // let graphTag = document.getElementById("graph-tag");
+            // graphTag.innerHTML = "";
 //         // console.log(graphDiv);
 //         // let newScript = document.createElement("script");
 //         // newScript.type = 'text/javascript';

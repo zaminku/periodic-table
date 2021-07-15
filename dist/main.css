@@ -8,7 +8,21 @@ body {
 h1 {
   font-family: "Oxygen", sans-serif;
   font-weight: bold;
-  color: black;
+  color: #7A777A;
+}
+
+.data > * {
+  font-family: "Times New Roman", Times, serif;
+  color: red;
+  border-style: solid;
+}
+
+.data {
+  border-style: solid;
+}
+
+.data-name {
+  font-weight: bold;
 }
 
 .nonmetal {

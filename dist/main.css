@@ -11,43 +11,47 @@ body {
 }
 
 .nonmetal {
-  background-color: yellow;
+  background-color: #F7F6B6;
 }
 
 .noble-gas {
-  background-color: orange;
+  background-color: #F7E0B6;
 }
 
 .alkali-metal {
-  background-color: red;
+  background-color: #F7B6B6;
 }
 
 .alkaline-earth-metal {
-  background-color: purple;
+  background-color: #F7C8B6;
 }
 
 .metalloid {
-  background-color: green;
+  background-color: #BBF7B6;
 }
 
 .halogen {
-  background-color: lightyellow;
+  background-color: #ECF7B6;
 }
 
 .post-transition-metal {
-  background-color: lightgreen;
+  background-color: #B6F7D5;
 }
 
 .transition-metal {
-  background-color: lightblue;
+  background-color: #B6DEF7;
 }
 
 .lanthanide {
-  background-color: cyan;
+  background-color: #E8B6F7;
 }
 
 .actinide {
-  background-color: turquoise;
+  background-color: #CAB6F7;
+}
+
+.atomic-number {
+  font-size: 1px;
 }
 
 .axis path,
@@ -63,6 +67,7 @@ body {
 }
 
 td {
+  border-radius: 5%;
   text-align: center;
 }
 

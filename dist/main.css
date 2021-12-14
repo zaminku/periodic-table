@@ -99,3 +99,45 @@ h3 {
 h2 {
   text-align: center;
 }
+
+.graph {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+#enButton, #arButton, #ieButton, #eaButton {
+  border-radius: 28px;
+    border-style: solid;
+    border-color: darkgrey;
+    font-family: sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 8px;
+    padding: 12px 18px;
+    background-color: rgb(203, 203, 203);
+    border-color: rgb(203, 203, 203);
+    color: white;
+    cursor: pointer;
+    margin: auto;
+    margin-top: 10px;
+    margin: 10px;
+}
+
+#buttons {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.navbar-icon {
+  color: black;
+  width: 50px;
+  height: 50px;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
